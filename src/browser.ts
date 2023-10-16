@@ -1,7 +1,7 @@
 import { open, closeMainWindow, Clipboard } from "@raycast/api";
 import { runAppleScript, showFailureToast } from "@raycast/utils";
 
-export async function newWindow(app: string): Promise<undefined> {
+export async function newWindow(app: string): Promise<void> {
 	const script = `
 	on run argv
 		set browserName to (item 1 of argv)
@@ -16,7 +16,7 @@ export async function newWindow(app: string): Promise<undefined> {
 		end if
 	end run
 	`;
-	
+
 	var res = await runAppleScript<string>(script, [app]);
 	if (res == "success") {
 			closeMainWindow();
@@ -31,7 +31,7 @@ export async function openURLClipboard(app: string): Promise<undefined> {
 	var url = await Clipboard.readText();
 	if (!url) {
 		showFailureToast("clipboard contents not text");
-		return 
+		return
 	}
 	url = url.trim();
 	if (!url.startsWith("http")) {
