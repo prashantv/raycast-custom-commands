@@ -1,3 +1,4 @@
+import { closeMainWindow } from "@raycast/api";
 import { runAppleScript, showFailureToast } from "@raycast/utils";
 
 
@@ -16,6 +17,7 @@ end if
 	
 		var res = await runAppleScript<string>(script);
 		if (res == "success") {
+			closeMainWindow();
 		} else {
 			showFailureToast("unknown error: " + res);
 		}

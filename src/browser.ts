@@ -1,4 +1,4 @@
-import { open, Clipboard } from "@raycast/api";
+import { open, closeMainWindow, Clipboard } from "@raycast/api";
 import { runAppleScript, showFailureToast } from "@raycast/utils";
 
 export async function newWindow(app: string): Promise<undefined> {
@@ -19,6 +19,7 @@ export async function newWindow(app: string): Promise<undefined> {
 	
 	var res = await runAppleScript<string>(script, [app]);
 	if (res == "success") {
+			closeMainWindow();
 	} else if (res == "application-not-running") {
 		showFailureToast("${app} is not running");
 	} else {
@@ -39,4 +40,5 @@ export async function openURLClipboard(app: string): Promise<undefined> {
 	}
 
 	await open(url, app);
+	closeMainWindow();
 }
