@@ -34,6 +34,13 @@
     },
     {
       "icon": "brave.svg",
+      "name": "activate-brave",
+      "title": "Activate Brave Window",
+      "description": "Activates an existing Brave window, or opens a new window on this desktop",
+      "mode": "no-view"
+    },
+    {
+      "icon": "brave.svg",
       "name": "url-brave",
       "title": "Open copied URL in Brave",
       "description": "Open a new Brave window with the URL in the clipboard",
@@ -51,6 +58,13 @@
       "name": "new-chrome",
       "title": "New Chrome Window",
       "description": "Open a new Chrome window on this desktop",
+      "mode": "no-view"
+    },
+    {
+      "icon": "chrome.png",
+      "name": "activate-chrome",
+      "title": "Activate Chrome Window",
+      "description": "Activates an existing Chrome window, or opens a new window on this desktop",
       "mode": "no-view"
     },
     {
