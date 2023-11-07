@@ -80,6 +80,13 @@
       "title": "New Terminal Window",
       "description": "Open a new terminal window on this desktop",
       "mode": "no-view"
+    },
+    {
+      "icon": "wol.png",
+      "name": "wake-on-lan",
+      "title": "Wake On Lan TPC",
+      "description": "Wakes TPC using WOL",
+      "mode": "no-view"
     }
   ],
   "dependencies": {
