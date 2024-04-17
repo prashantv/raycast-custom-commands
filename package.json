@@ -79,7 +79,27 @@
       "name": "new-terminal",
       "title": "New Terminal Window",
       "description": "Open a new terminal window on this desktop",
-      "mode": "no-view"
+      "mode": "no-view",
+      "preferences": [
+        {
+          "name": "terminalApp",
+          "description": "Terminal application to use",
+          "type": "dropdown",
+          "title": "Terminal App",
+          "required": false,
+          "data": [
+            {
+              "title": "iTerm",
+              "value": "iterm"
+            },
+            {
+              "title": "Terminal",
+              "value": "terminal"
+            }
+          ],
+          "default": "iterm"
+        }
+      ]
     },
     {
       "icon": "wol.png",
