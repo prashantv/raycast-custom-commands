@@ -29,33 +29,32 @@ on run argv
 end run
 
 
-`
+`;
 
 export async function newWindow(app: string, focusExistingOpt?: boolean): Promise<void> {
-	var focusExisting = JSON.stringify(!!focusExistingOpt)
-	var res = await runAppleScript<string>(newOrFocusAppscript, [app, focusExisting]);
-	if (res == "success") {
-			closeMainWindow();
-	} else if (res == "application-not-running") {
-		showFailureToast("${app} is not running");
-	} else {
-		showFailureToast("unknown error: " + res);
-	}
+  const focusExisting = JSON.stringify(!!focusExistingOpt);
+  const res = await runAppleScript<string>(newOrFocusAppscript, [app, focusExisting]);
+  if (res == "success") {
+    closeMainWindow();
+  } else if (res == "application-not-running") {
+    showFailureToast("${app} is not running");
+  } else {
+    showFailureToast("unknown error: " + res);
+  }
 }
 
-
 export async function openURLClipboard(app: string): Promise<undefined> {
-	var url = await Clipboard.readText();
-	if (!url) {
-		showFailureToast("clipboard contents not text");
-		return
-	}
-	url = url.trim();
-	if (!url.startsWith("http")) {
-		showFailureToast("clipboard contents don't contain url");
-		return
-	}
+  let url = await Clipboard.readText();
+  if (!url) {
+    showFailureToast("clipboard contents not text");
+    return;
+  }
+  url = url.trim();
+  if (!url.startsWith("http")) {
+    showFailureToast("clipboard contents don't contain url");
+    return;
+  }
 
-	await open(url, app);
-	closeMainWindow();
+  await open(url, app);
+  closeMainWindow();
 }

@@ -1,21 +1,20 @@
 import { closeMainWindow, getPreferenceValues } from "@raycast/api";
 import { runAppleScript, showFailureToast } from "@raycast/utils";
 
-
 interface Preferences {
   terminalApp: string;
 }
 
 export default async function main() {
-	const prefs = getPreferenceValues<Preferences>();
+  const prefs = getPreferenceValues<Preferences>();
 
-	var script = prefs.terminalApp == 'iterm' ? itermScript : terminalScript;
-	var res = await runAppleScript<string>(script);
-	if (res == "success") {
-		closeMainWindow();
-	} else {
-		showFailureToast("unknown error: " + res);
-	}
+  const script = prefs.terminalApp == "iterm" ? itermScript : terminalScript;
+  const res = await runAppleScript<string>(script);
+  if (res == "success") {
+    closeMainWindow();
+  } else {
+    showFailureToast("unknown error: " + res);
+  }
 }
 
 const itermScript = `
