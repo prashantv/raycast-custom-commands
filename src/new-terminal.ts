@@ -8,7 +8,8 @@ interface Preferences {
 export default async function main() {
   const prefs = getPreferenceValues<Preferences>();
 
-  const script = prefs.terminalApp == "iterm" ? itermScript : terminalScript;
+  const script =
+    prefs.terminalApp == "iterm" ? itermScript : prefs.terminalApp == "wezterm" ? weztermScript : terminalScript;
   const res = await runAppleScript<string>(script);
   if (res == "success") {
     closeMainWindow();
@@ -41,4 +42,16 @@ else
 	open application "Terminal"
 	set returnValue to "success"
 end if
+`;
+
+const weztermScript = `
+if application "WezTerm" is running then
+	do shell script "/Applications/WezTerm.app/Contents/MacOS/wezterm start"
+else
+	tell application "WezTerm"
+		launch
+		activate
+	end tell
+end if
+set returnValue to "success"
 `;

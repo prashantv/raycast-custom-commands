@@ -95,6 +95,10 @@
             {
               "title": "Terminal",
               "value": "terminal"
+            },
+            {
+              "title": "WezTerm",
+              "value": "wezterm"
             }
           ],
           "default": "iterm"
@@ -106,7 +110,27 @@
       "name": "wake-on-lan",
       "title": "Wake On Lan TPC",
       "description": "Wakes TPC using WOL",
-      "mode": "no-view"
+      "mode": "no-view",
+      "preferences": [
+        {
+          "name": "terminalApp",
+          "description": "Terminal application to use",
+          "type": "dropdown",
+          "title": "Terminal App",
+          "required": false,
+          "data": [
+            {
+              "title": "iTerm",
+              "value": "iterm"
+            },
+            {
+              "title": "Terminal",
+              "value": "terminal"
+            }
+          ],
+          "default": "iterm"
+        }
+      ]
     }
   ],
   "dependencies": {
