@@ -8,8 +8,12 @@ interface Preferences {
 export default async function main() {
   const prefs = getPreferenceValues<Preferences>();
 
-  const script =
-    prefs.terminalApp == "iterm" ? itermScript : prefs.terminalApp == "wezterm" ? weztermScript : terminalScript;
+  const script =  {
+		"ghostty": ghosttyScript,
+		"iterm": itermScript,
+		"wezterm": weztermScript
+	}[prefs.terminalApp] ?? terminalScript;
+
   const res = await runAppleScript<string>(script);
   if (res == "success") {
     closeMainWindow();
@@ -17,6 +21,18 @@ export default async function main() {
     showFailureToast("unknown error: " + res);
   }
 }
+
+const ghosttyScript = `
+if application "Ghostty" is running then
+	tell application "Ghostty"
+		tell application "System Events" to click menu item "New Window" of menu "File" of menu bar 1 of process "Ghostty"
+		set returnValue to "success"
+	end tell
+else
+	open application "Ghostty"
+	set returnValue to "success"
+end if
+`;
 
 const itermScript = `
 if application "iTerm" is running then

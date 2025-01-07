@@ -89,6 +89,10 @@
           "required": false,
           "data": [
             {
+              "title": "Ghostty",
+              "value": "ghostty"
+            },
+            {
               "title": "iTerm",
               "value": "iterm"
             },
